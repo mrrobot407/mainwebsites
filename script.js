@@ -29,6 +29,27 @@
     });
   }
 
+  /* ---------- Home page theme choice prompt ---------- */
+  function initThemePrompt() {
+    var prompt = document.querySelector(".theme-prompt");
+    if (!prompt || localStorage.getItem("site-theme-prompt-seen")) return;
+
+    prompt.hidden = false;
+    prompt.querySelectorAll("[data-theme-choice]").forEach(function (choice) {
+      choice.addEventListener("click", function () {
+        var selectedTheme = choice.getAttribute("data-theme-choice");
+        if (selectedTheme === "light") {
+          var toggle = document.querySelector(".theme-toggle");
+          if (toggle && document.documentElement.getAttribute("data-theme") !== "light") {
+            toggle.click();
+          }
+        }
+        localStorage.setItem("site-theme-prompt-seen", "true");
+        prompt.hidden = true;
+      });
+    });
+  }
+
   /* ---------- Navbar scroll effect ---------- */
   function initNavbarScroll() {
     var nav = document.querySelector(".navbar");
@@ -48,15 +69,20 @@
   function initMobileMenu() {
     var hamburger = document.querySelector(".hamburger");
     var menu = document.querySelector(".mobile-menu");
+    var navbar = document.querySelector(".navbar");
     if (!hamburger || !menu) return;
 
     function closeMenu() {
       menu.classList.remove("open");
       hamburger.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("mobile-menu-open");
+      if (navbar) navbar.classList.remove("menu-open");
     }
     function openMenu() {
       menu.classList.add("open");
       hamburger.setAttribute("aria-expanded", "true");
+      document.body.classList.add("mobile-menu-open");
+      if (navbar) navbar.classList.add("menu-open");
     }
 
     hamburger.addEventListener("click", function () {
@@ -240,6 +266,7 @@
   /* ---------- Init ---------- */
   document.addEventListener("DOMContentLoaded", function () {
     initTheme();
+    initThemePrompt();
     initNavbarScroll();
     initMobileMenu();
     initActiveNav();
