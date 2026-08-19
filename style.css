@@ -739,6 +739,7 @@ button{font-family:inherit;}
 .cc-icon svg{width:20px;height:20px;}
 .contact-card h3{font-size:.96rem; margin-bottom:.3em; font-weight:600;}
 .contact-card p{font-size:.9rem; margin:0; color:var(--text-dim); font-family:var(--font-mono);}
+.contact-action{margin-top:4px; padding:8px 14px; font-size:.78rem;}
 
 .form-panel{
   padding:36px;

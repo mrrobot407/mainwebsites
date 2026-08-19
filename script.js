@@ -243,19 +243,6 @@
         successBox.focus();
       }
 
-      var mailLink = document.getElementById("mailto-fallback");
-      if (mailLink) {
-        var subject = encodeURIComponent("IT Support Request — " + data.service);
-        var body = encodeURIComponent(
-          "Name: " + data.name +
-          "\nPhone: " + data.phone +
-          "\nEmail: " + data.email +
-          "\nService required: " + data.service +
-          "\n\nMessage:\n" + data.message
-        );
-        mailLink.href = "mailto:aryan96874@gmail.com?subject=" + subject + "&body=" + body;
-      }
-
       form.reset();
       form.querySelectorAll(".field").forEach(function (f) {
         f.classList.remove("invalid");
